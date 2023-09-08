@@ -1,19 +1,41 @@
 <template>
-  <div>
-    <home-header></home-header>
-    <ToDoInputVue />
+  <div class="container">
+    <div>
+      <home-header></home-header>
+    </div>
+    <div class="input-container">
+      <ToDoInput />
+      <AddButton />
+    </div>
+    <ToDoCard />
   </div>
 </template>
 
 <script>
 import HomeHeader from './HomeHeader.vue';
-import ToDoInputVue from '@/components/ToDoInput.vue';
+import ToDoInput from '@/components/ToDoInput.vue';
+import AddButton from '@/components/AddButton.vue';
+import ToDoCard from '@/components/ToDoCard.vue';
 export default {
   components: {
     HomeHeader,
-    ToDoInputVue
+    ToDoInput,
+    AddButton,
+    ToDoCard,
   }
 };
 </script>
 
-<style></style>
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+</style>
