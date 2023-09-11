@@ -1,16 +1,28 @@
 <template>
     <div>
+        <div class="card" v-for="(toDo, index) in toDos" :key="toDo.id">
+            {{ toDo.content }}
+        </div>
     </div>
 </template>
 
 <script>
-export default {
+import { mapState } from 'vuex';
 
+export default {
+    computed: {
+        ...mapState(['toDos'])
+    },
+    data() {
+        return {
+            // other data properties
+        }
+    },
 }
 </script>
 
 <style scoped>
-div {
+.card {
     border: none;
     width: 560px;
     height: 60px;
