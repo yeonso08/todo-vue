@@ -5,7 +5,7 @@
     </div>
     <div class="input-container">
       <ToDoInput v-model="toDo" />
-      <AddButton :toDo="toDo" />
+      <AddButton :toDo="toDo" @resetTodo="resetTodo" />
     </div>
     <ToDoCard />
   </div>
@@ -16,6 +16,7 @@ import HomeHeader from './HomeHeader.vue';
 import ToDoInput from '@/components/ToDoInput.vue';
 import AddButton from '@/components/AddButton.vue';
 import ToDoCard from '@/components/ToDoCard.vue';
+
 export default {
   components: {
     HomeHeader,
@@ -27,7 +28,22 @@ export default {
     return {
       toDo: ""
     };
-  }
+  },
+  watch: {
+    toDo(newVal, oldVal) {
+      console.log('toDo changed:', newVal);
+    },
+  },
+  methods: {
+    resetTodo() {
+      console.log('resetTodo method called'); // 디버깅을 위한 로그
+      console.log('Before reset:', this.toDo); // 디버깅을 위한 로그
+      this.toDo = '';
+      this.$nextTick(() => {
+        console.log('After reset:', this.toDo); // 디버깅을 위한 로그
+      });
+    },
+  },
 };
 </script>
 

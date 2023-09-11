@@ -27,6 +27,7 @@ export default {
             }
             const { data } = await setToDos(toDoData);
             console.log(data);
+            this.$emit('resetTodo');
         },
     }
 };

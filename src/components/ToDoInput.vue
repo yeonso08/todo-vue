@@ -1,12 +1,18 @@
 <template>
     <div>
-        <input @input="$emit('input', $event.target.value)" />
+        <input :value="value" @input="updateValue" />
     </div>
 </template>
 
 <script>
 export default {
-}
+    props: ['value'],
+    methods: {
+        updateValue(event) {
+            this.$emit('input', event.target.value);
+        },
+    },
+};
 </script>
 
 <style>
