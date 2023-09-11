@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default function getToDos() {
-  const url = "https://dummyjson.com/todos";
-  return axios.get(url);
+export default function setToDos(payload) {
+  const url = "https://dummyjson.com/todos/add";
+  return axios.post(url, payload);
 }
