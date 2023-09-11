@@ -1,11 +1,21 @@
 <template>
-    <button>+</button>
+    <button @click="addTodo()">+</button>
 </template>
 
 <script>
-export default {
+import { mapActions } from 'vuex';
 
-}
+export default {
+    props: ["toDo"],
+    methods: {
+        ...mapActions(['ADD_TODO']),
+        addTodo() {
+            if (this.toDo) {
+                this.ADD_TODO({ content: this.toDo });
+            }
+        },
+    },
+};
 </script>
 
 <style>

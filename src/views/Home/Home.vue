@@ -4,8 +4,8 @@
       <home-header></home-header>
     </div>
     <div class="input-container">
-      <ToDoInput />
-      <AddButton />
+      <ToDoInput v-model="toDo" />
+      <AddButton :toDo="toDo" />
     </div>
     <ToDoCard />
   </div>
@@ -22,6 +22,11 @@ export default {
     ToDoInput,
     AddButton,
     ToDoCard,
+  },
+  data: () => {
+    return {
+      toDo: ""
+    };
   }
 };
 </script>
