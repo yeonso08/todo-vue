@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="card" v-for="(toDo, index) in toDos" :key="toDo.id">
-            {{ toDo.content }}
+            {{ toDo.todo }}
         </div>
     </div>
 </template>
 
-<script>
+<!-- <script>
 import { mapState } from 'vuex';
 
 export default {
@@ -18,7 +18,29 @@ export default {
         }
     },
 }
+</script> -->
+
+<script>
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+            toDos: [],
+        };
+    },
+    async mounted() {
+        try {
+            const response = await axios.get('https://dummyjson.com/todos');
+            this.toDos = response.data.todos;
+            console.log(this.toDos)
+        } catch (error) {
+            console.error('There was an error fetching the toDos:', error);
+        }
+    },
+};
 </script>
+
 
 <style scoped>
 .card {
