@@ -1,26 +1,37 @@
 <template>
     <div>
         <div class="card" v-for="(toDo, index) in toDos" :key="toDo.id">
-            {{ toDo.todo }}
+            <div class="text">
+                {{ toDo.todo }}
+            </div>
+            <div class="button">
+                <DeleteButton :id="toDo.id" @deleteTodo="deleteTodo" />
+            </div>
         </div>
     </div>
 </template>
 
-<!-- <script>
+<script>
 import { mapState } from 'vuex';
+import DeleteButton from './DeleteButton.vue';
 
 export default {
+    components: {
+        DeleteButton,
+    },
     computed: {
         ...mapState(['toDos'])
     },
-    data() {
-        return {
+    methods: {
+        deleteTodo(id) {
+            this.$store.dispatch('DELETE_TODO', id);
         }
-    },
+    }
 }
-</script> -->
+</script>
 
-<script>
+<!--API 연결 헀을 때-->
+<!-- <script>
 import { ToDoAPI } from '@/api';
 import axios from 'axios';
 
@@ -40,11 +51,14 @@ export default {
         }
     },
 };
-</script>
+</script> -->
 
 
 <style scoped>
 .card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border: none;
     width: 560px;
     height: 60px;
@@ -53,4 +67,14 @@ export default {
     background-color: white;
     margin-top: 20px;
 }
+
+.text {
+    flex: 1;
+    text-align: center;
+}
+
+.button {
+    margin-right: 10px;
+}
 </style>
+
