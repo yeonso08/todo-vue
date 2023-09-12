@@ -12,7 +12,7 @@ export default {
         ...mapActions(['ADD_TODO']),
         addTodo() {
             if (this.toDo) {
-                this.ADD_TODO({ todo: this.toDo });
+                this.ADD_TODO({ todo: this.toDo, isCompleted: false });
                 this.$emit('resetTodo');
             }
         },

@@ -63,7 +63,6 @@ export default {
 <style scoped>
 .card {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     border: none;
     width: 560px;
