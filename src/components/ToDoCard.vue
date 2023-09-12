@@ -21,6 +21,7 @@ export default {
 </script> -->
 
 <script>
+import { ToDoAPI } from '@/api';
 import axios from 'axios';
 
 export default {
@@ -31,7 +32,7 @@ export default {
     },
     async mounted() {
         try {
-            const response = await axios.get('https://dummyjson.com/todos');
+            const response = await ToDoAPI.getToDos();
             this.toDos = response.data.todos;
             console.log(this.toDos)
         } catch (error) {

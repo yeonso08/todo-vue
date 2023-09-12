@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import setToDos from '@/api';
+import { ToDoAPI } from '@/api';
 import { mapActions } from 'vuex';
 
 export default {
@@ -25,7 +25,7 @@ export default {
                 completed: false,
                 userId: 5
             }
-            const { data } = await setToDos(toDoData);
+            const { data } = await ToDoAPI.setToDos(toDoData);
             console.log(data);
             this.$emit('resetTodo');
         },
