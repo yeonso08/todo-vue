@@ -1,10 +1,11 @@
 <template>
     <div>
         <div class="card" v-for="(toDo, index) in toDos" :key="toDo.id">
-            <div class="text">
+            <div :class="['text', { 'line-text': toDo.isCompleted }]">
                 {{ toDo.todo }}
             </div>
             <div class="button">
+                <UpdateButton :id="toDo.id" @updateTodo="updateTodo" />
                 <DeleteButton :id="toDo.id" @deleteTodo="deleteTodo" />
             </div>
         </div>
@@ -14,10 +15,12 @@
 <script>
 import { mapState } from 'vuex';
 import DeleteButton from './DeleteButton.vue';
+import UpdateButton from './UpdateButton.vue';
 
 export default {
     components: {
         DeleteButton,
+        UpdateButton,
     },
     computed: {
         ...mapState(['toDos'])
@@ -25,7 +28,10 @@ export default {
     methods: {
         deleteTodo(id) {
             this.$store.dispatch('DELETE_TODO', id);
-        }
+        },
+        updateTodo(id) {
+            this.$store.dispatch('COMPLET_TODO', id);
+        },
     }
 }
 </script>
@@ -75,6 +81,10 @@ export default {
 
 .button {
     margin-right: 10px;
+}
+
+.line-text {
+    text-decoration: line-through;
 }
 </style>
 

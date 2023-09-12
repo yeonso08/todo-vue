@@ -13,6 +13,7 @@ export default {
         addTodo() {
             if (this.toDo) {
                 this.ADD_TODO({ todo: this.toDo });
+                this.$emit('resetTodo');
             }
         },
     },
